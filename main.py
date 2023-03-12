@@ -4,6 +4,7 @@ import os
 import datetime
 from logger import StateLogger
 
+client = mqtt.Client(client_id="LaptopA")
 log = None
 
 def on_connect(client, userdata, flags, rc):
@@ -27,27 +28,29 @@ def on_disconnect(client, userdata,  rc):
 def on_message(client, userdata, msg):
     if msg.topic == "lightSensor":
         log.log_data(msg)
+        #print (timestamp, "->", msg.topic, msg.payload)
     if msg.topic == "threshold":
         log.log_data(msg)
+        #print (timestamp, "->", msg.topic, msg.payload)
     if msg.topic == "Status/RaspberryPiA":
         log.log_data(msg)
+        #print (timestamp, "->", msg.topic, msg.payload)
     if msg.topic == "Status/RaspberryPiC":
         log.log_data(msg)
+        #print (timestamp, "->", msg.topic, msg.payload)
     if msg.topic == "LightStatus":
         log.log_data(msg)
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         if msg.payload == b"TurnOff":
-            print("LED1 turned off at ", timestamp)
+            print(timestamp, "-> LED1 turned off")
         if msg.payload == b"TurnOn":
-            print("LED1 turned on at ", timestamp)
+            print(timestamp, "-> LED1 turned on")
 
-
-client = mqtt.Client(client_id="LaptopA")
 client.on_connect = on_connect
 client.on_message = on_message
 client.on_disconnect = on_disconnect
 
-client.connect("192.168.1.125", 1883, 60)
+client.connect("169.254.180.48", 1883, 60)
 try:
     client.loop_forever()
 except KeyboardInterrupt:
