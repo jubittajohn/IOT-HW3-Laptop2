@@ -23,7 +23,7 @@ The file IOT-HW3-LAptop2 has the following data:
     ```
 ### Prerequisites
 #### Broker     
--   We used HiveMQ MQTT Broker. For our case, we downloaded the broker and ran it in the local machine. Broker should be running on Laptop 1 before starting the Laptop 1 for the connection to be created and for subcribing and publishing.
+-   We used HiveMQ MQTT Broker. For our case, we downloaded the broker and ran it in the local machine. Broker should be running on Laptop 1 before starting the Laptop 2 for the connection to be created and for subcribing and publishing.
 
 #### Raspberry Pi A, Pi B, PiC
 - All the three Raspberry Pis should be running so that the publishing and subscribing takes place and the messages sent out by the broker can be captured by Laptop 2
